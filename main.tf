@@ -1,15 +1,13 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
       version = "3.26.0"
     }
     random = {
-      source  = "hashicorp/random"
       version = "3.0.1"
     }
   }
-  required_version = "~> 0.14"
+  required_version = "~> 0.12"
 
   backend "s3" {
     encrypt = true
@@ -24,7 +22,9 @@ provider "aws" {
   region = "us-west-2"
 }
 
-
+variable "environment" {
+  type = string
+}
 
 resource "random_pet" "sg" {}
 
@@ -35,7 +35,7 @@ resource "aws_instance" "web" {
 
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World" > index.html
+              echo "Hello, ${var.environment} World" > index.html
               nohup busybox httpd -f -p 8080 &
               EOF
 }
