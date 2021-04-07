@@ -11,12 +11,11 @@ terraform {
   }
   required_version = "~> 0.14"
 
-  backend "remote" {
-    organization = "REPLACE_ME"
-
-    workspaces {
-      name = "gh-actions-demo"
-    }
+  backend "s3" {
+    encrypt = true
+    bucket  = "papaya-deploy"
+    region  = "us-west-1"
+    key     = "terraform/state/gh-actions-demo.tfstate"
   }
 }
 
