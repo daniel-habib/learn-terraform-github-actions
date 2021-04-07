@@ -10,10 +10,10 @@ terraform {
   required_version = "~> 0.12"
 
   backend "s3" {
-    encrypt = true
-    bucket  = "papaya-deploy"
-    region  = "us-west-1"
-    key     = "daniel.tfstate"
+    encrypt              = true
+    bucket               = "papaya-deploy"
+    region               = "us-west-1"
+    key                  = "daniel.tfstate"
     workspace_key_prefix = "terraform/state/gh-actions"
   }
 }
