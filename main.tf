@@ -13,7 +13,8 @@ terraform {
     encrypt = true
     bucket  = "papaya-deploy"
     region  = "us-west-1"
-    key     = "terraform/state/gh-actions-demo.tfstate"
+    key     = "daniel.tfstate"
+    workspace_key_prefix = "terraform/state/gh-actions"
   }
 }
 
