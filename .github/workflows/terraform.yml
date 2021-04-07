@@ -40,9 +40,14 @@ jobs:
         id: init
         run: terraform init
 
-      - name: Terraform env
-        id: env
+      - name: Terraform create env
+        id: create-env
         run: terraform workspace new ${{ steps.extract_branch.outputs.branch }}
+        continue-on-error: true
+
+      - name: Terraform select env
+        id: select-env
+        run: terraform workspace select ${{ steps.extract_branch.outputs.branch }}
 
       - name: Terraform Plan
         id: plan
